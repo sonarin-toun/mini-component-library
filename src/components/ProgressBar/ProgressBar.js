@@ -3,33 +3,31 @@ import React from "react";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
 
-
 const SIZE = {
   small: {
     "--containerHeight": `8px`,
     "--borderRadius": `4px`,
     "--innerBarHeight": `8px`,
     "--innerBorderRadius": `0px`,
-    "--padding": `none`
+    "--padding": `none`,
   },
   medium: {
     "--containerHeight": `12px`,
     "--borderRadius": `8px`,
     "--innerBarHeight": `12px`,
     "--innerBorderRadius": `0px`,
-    "--padding": `none`
+    "--padding": `none`,
   },
   large: {
     "--containerHeight": `24px`,
     "--borderRadius": `8px`,
     "--innerBarHeight": `16px`,
     "--innerBorderRadius": `0px`,
-    "--padding": `4px`
-  }
-}
+    "--padding": `4px`,
+  },
+};
 
 const ProgressBarBase = styled.progress`
-  
   &[value] {
     /*reset appearancen*/
     -webkit-appearance: none;
@@ -38,7 +36,7 @@ const ProgressBarBase = styled.progress`
 
     /*Sizing*/
     width: 370px;
-    
+
     /*Progress Bar Container*/
     &::-webkit-progress-bar {
       background-color: ${COLORS.transparentGray15};
@@ -62,13 +60,19 @@ const ProgressBarBase = styled.progress`
 `;
 
 const ProgressBar = ({ value, size }) => {
-
   const styles = SIZE[size];
-  if (value > 99) styles['--innerBorderRadius'] = '4px'; 
+  if (value > 99) styles["--innerBorderRadius"] = "4px";
 
-  return <ProgressBarBase max="100" value={value} style={styles}/>;
+  return (
+    <ProgressBarBase
+      value={value}
+      max="100"
+      aria-valuenow={value}
+      aria-valuemin="0"
+      aria-valuemax="100"
+      style={styles}
+    />
+  );
 };
-
-
 
 export default ProgressBar;
