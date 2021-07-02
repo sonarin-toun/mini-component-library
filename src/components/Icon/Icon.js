@@ -14,13 +14,12 @@ const icons = {
   'chevron-down': ChevronDown,
 };
 
-const Icon = ({ id, size, strokeWidth = 1, ...delegated }) => {
+const Icon = ({ id, size, strokeWidth, ...delegated }) => {
   const Component = icons[id];
 
   if (!Component) {
     throw new Error(`No icon found for ID: ${id}`);
   }
-
   return (
     <Wrapper
       style={{
@@ -29,10 +28,13 @@ const Icon = ({ id, size, strokeWidth = 1, ...delegated }) => {
       }}
       {...delegated}
     >
-      <Component color="currentColor" size={size} />
+      <Component color="currentColor" size={size} strokeWidth={strokeWidth} />
+
     </Wrapper>
+    
   );
 };
+
 
 const Wrapper = styled.div`
   width: var(--size);
