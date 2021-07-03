@@ -39,11 +39,19 @@ const SelectMenu = styled.select`
 const HiddenLabel = styled.div`
   width: max-content;
   visibility: hidden;
+  font-size: 1rem;
 
   /* Take it out of flow and hide behind the wrapper*/
   position: absolute;
   top: 0;
   left: 0;
+
+  /* Tweak for firefox padding */
+  @-moz-document url-prefix() {
+        & {
+          padding: 0 4px;
+        }
+    }
 `;
 
 const Select = ({ label, value, onChange, children }) => {
