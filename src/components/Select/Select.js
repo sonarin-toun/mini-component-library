@@ -36,10 +36,19 @@ const SelectMenu = styled.select`
   width: var(--width);
 `;
 
-const Select = ({ label, value, onChange, children }) => {
+const HiddenLabel = styled.div`
+  width: max-content;
+  visibility: hidden;
 
+  /* Take it out of flow and hide behind the wrapper*/
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+
+const Select = ({ label, value, onChange, children }) => {
   const displayedValue = getDisplayedValue(value, children);
-  
+
   let [width, setWidth] = useState();
 
   //Make sure the useEffect do no run on initial render
@@ -70,12 +79,7 @@ const Select = ({ label, value, onChange, children }) => {
         {children}
       </SelectMenu>
       <IconWrapper id="chevron-down" size="24px" strokeWidth="2" />
-      <div
-        className="displayValue"
-        style={{ width: "max-content", fontSize: "1rem", visibility: "hidden" }}
-      >
-        {displayedValue}
-      </div>
+      <HiddenLabel className="displayValue">{displayedValue}</HiddenLabel>
     </Wrapper>
   );
 };
